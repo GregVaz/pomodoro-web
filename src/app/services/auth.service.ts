@@ -13,7 +13,7 @@ export class AuthService {
     private userService: UserService,
     private header: Headers) {}
 
-  public async session() {
+  public session() {
     const token = localStorage.getItem('token'); 
     if (token) {
       return true;

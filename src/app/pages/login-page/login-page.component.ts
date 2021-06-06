@@ -36,7 +36,9 @@ export class LoginPageComponent implements OnInit {
   login() {
     if (this.formLogin.valid) {
       this.userService.login(this.formLogin.value).subscribe((response: any) => {
-        console.log(response);
+        localStorage.setItem('token', response.token);
+        localStorage.setItem('user', JSON.stringify(response.user));
+        this.router.navigate(['/']);
       }, error => {
         console.log(error);
       });
