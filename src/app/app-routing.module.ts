@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { FocusPageComponent } from './pages/focus-page/focus-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
+import { SignUpPageComponent } from './pages/sign-up-page/sign-up-page.component';
 
 const routes: Routes = [
   {
@@ -14,6 +15,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginPageComponent
+  },
+  {
+    path: 'signup',
+    component: SignUpPageComponent
   },
   {
     path: '**',

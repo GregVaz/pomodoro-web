@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  endpoint: 'http://localhost:3002/api/v1/'
+  endpoint: 'http://localhost:3002/api/v1/',
+  secret: 'DOOM'
 };
 
 /*
