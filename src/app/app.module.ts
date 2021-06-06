@@ -10,13 +10,15 @@ import { FocusPageComponent } from './pages/focus-page/focus-page.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from './material';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SignUpPageComponent } from './pages/sign-up-page/sign-up-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginPageComponent,
     PageNotFoundComponent,
-    FocusPageComponent
+    FocusPageComponent,
+    SignUpPageComponent
   ],
   imports: [
     BrowserModule,
