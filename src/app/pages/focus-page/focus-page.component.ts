@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-focus-page',
@@ -12,7 +13,7 @@ export class FocusPageComponent implements OnInit {
   public minutes: string;
   public seconds: string;
 
-  constructor() {
+  constructor(public authService: AuthService) {
     this.timer = 1500;
     this.started = false;
     this.minutes = '25';

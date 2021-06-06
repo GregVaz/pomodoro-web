@@ -21,3 +21,9 @@
 .timer > p {
   margin: 0;
 }
+
+.logout-btn {
+  position: absolute;
+  top: 15px;
+  right: 10px;
+}

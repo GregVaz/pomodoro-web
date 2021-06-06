@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { Login } from '../utils/login.interface';
 import { Headers } from './header';
@@ -11,7 +12,8 @@ export class AuthService {
 
   constructor(
     private userService: UserService,
-    private header: Headers) {}
+    private header: Headers,
+    private router: Router) {}
 
   public session() {
     const token = localStorage.getItem('token'); 
@@ -24,5 +26,6 @@ export class AuthService {
 
   logout(): void {
     localStorage.clear();
+    this.router.navigate(['/login']);
   }
 }
