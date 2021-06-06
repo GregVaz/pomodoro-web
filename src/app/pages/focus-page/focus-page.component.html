@@ -1,3 +1,8 @@
-<div class="container mt-4">
-  <p>Focus page</p>
+<div class="focus-body">
+  <div class="timer">
+    <p>{{minutes}}:{{seconds}}</p>
+  </div>
+  <div class="w-50 mt-4 d-flex justify-content-center">
+    <button mat-raised-button [color]="started ? 'warn' : 'primary'" class="mx-1 w-25" (click)="startTimer()">{{started ? 'Detener' : 'Iniciar'}}</button>
+  </div>
 </div>
