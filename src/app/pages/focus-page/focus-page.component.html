@@ -4,7 +4,7 @@
     <p>{{minutes}}:{{seconds}}</p>
   </div>
   <div class="w-50 mt-4 d-flex justify-content-center">
-    <button mat-raised-button [color]="started ? 'warn' : 'primary'" class="mx-1 w-25" (click)="startTimer()">{{started ? 'Detener' : 'Iniciar'}}</button>
+    <button mat-raised-button [color]="started ? 'warn' : 'primary'" class="mx-1 w-25" (click)="timerControls()">{{started ? 'Detener' : 'Iniciar'}}</button>
   </div>
   <div class="my-3">
     <form [formGroup]="formTimers" (ngSubmit)="setTime()" class="d-flex flex-column align-items-center">

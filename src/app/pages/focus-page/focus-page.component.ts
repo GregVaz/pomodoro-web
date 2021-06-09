@@ -39,14 +39,19 @@ export class FocusPageComponent implements OnInit {
     });
   }
 
-  startTimer() {
-    if (!this.started) {
-      this.started = !this.started;
-      this.countInterval = setInterval(this._controls, 1000);
-    } else {
-      this.started = !this.started;
-      clearInterval(this.countInterval);
-    }
+  timerControls() {
+    if (!this.started) this._startTimer();
+    else this._stopTimer();
+  }
+
+  private _startTimer() {
+    this.started = !this.started;
+    this.countInterval = setInterval(this._controls, 1000);
+  }
+
+  private _stopTimer() {
+    this.started = !this.started;
+    clearInterval(this.countInterval);
   }
 
   setTime() {
@@ -69,6 +74,7 @@ export class FocusPageComponent implements OnInit {
     let second = Math.floor(this.timer % 60);
     this.minutes = minute.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
     this.seconds = second.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+    if (minute === 0 && second === 0) this._stopTimer();
   }
 
 
