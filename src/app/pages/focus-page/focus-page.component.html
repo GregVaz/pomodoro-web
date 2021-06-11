@@ -18,7 +18,7 @@
         <div class="w-50 mt-4 d-flex justify-content-center">
           <button mat-raised-button [color]="started ? 'warn' : 'primary'" class="mx-1" (click)="timerControls()">{{started ? 'Detener' : 'Iniciar'}}</button>
         </div>
-        <div class="my-3">
+        <div class="my-3" *ngIf="!started">
           <form [formGroup]="formTimers" (ngSubmit)="setTime()" class="d-flex flex-column align-items-center">
             <div class="form-group d-flex justify-content-center">
               <mat-form-field appearance="outline" class="p-1" style="width: 5rem;">

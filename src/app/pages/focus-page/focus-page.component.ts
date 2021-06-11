@@ -41,7 +41,9 @@ export class FocusPageComponent implements OnInit {
   }
 
   timerControls() {
-    if (!this.started) this._startTimer();
+    if (Number(this.minute.value) === 0 && Number(this.second.value) === 0) {
+      console.log('El timer no puede ejecutar dicha accion');
+    } else if (!this.started) this._startTimer();
     else this._stopTimer();
   }
 
@@ -56,7 +58,6 @@ export class FocusPageComponent implements OnInit {
   }
 
   setTime() {
-    console.log(this.formTimers.value);
     if (this.formTimers.valid) {
       let minutes = this.minute.value
       let seconds = this.second.value;
@@ -67,7 +68,8 @@ export class FocusPageComponent implements OnInit {
 
   private _controls = () => {
     this.timer = this.timer - 1;
-    this._timerCalculations();
+    let result = this._timerCalculations();
+    if (result === 0) this._stopTimer();
   }
 
   private _timerCalculations() {
@@ -75,7 +77,7 @@ export class FocusPageComponent implements OnInit {
     let second = Math.floor(this.timer % 60);
     this.minutes = minute.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
     this.seconds = second.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
-    if (minute === 0 && second === 0) this._stopTimer();
+    return minute + second;
   }
 
   togglePanel(status: boolean) {
