@@ -1,3 +1,4 @@
+import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { NotificationsService } from 'angular2-notifications';
@@ -15,8 +16,10 @@ export class FocusPageComponent implements OnInit {
   private countInterval: any;
   public minutes: string;
   public seconds: string;
+  private previousTime = { minutes: '25', seconds: '00'};
   public formTimers: FormGroup;
   public panelOpenState = true;
+  private countPomodoros = 0 ;
 
   constructor(public authService: AuthService,
     private formBuilder: FormBuilder,
@@ -64,6 +67,7 @@ export class FocusPageComponent implements OnInit {
     if (this.formTimers.valid) {
       let minutes = this.minute.value
       let seconds = this.second.value;
+      this.previousTime = this.formTimers.value;
       this.timer = (Number(minutes) * 60) + Number(seconds)
       this._timerCalculations();
     }
@@ -77,6 +81,25 @@ export class FocusPageComponent implements OnInit {
 
   private finishedTimer() {
     this._stopTimer();
+    this.countPomodoros++;
+    if (this.countPomodoros > 2) {
+      Swal.fire({
+        title: 'Te recomendamos tomarte un pequeño descanso, ¿quieres iniciar un timer de 5 minutos?',
+        showDenyButton: true,
+        confirmButtonText: `Si`,
+        denyButtonText: `No`,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.minute.setValue('05');
+          this.second.setValue('00');
+          this.setTime();
+          this.timerControls();
+        } else if (result.isDenied) {
+          this.notificationService.info('Info', 'Recuerda tomar un pequeño descanso de 15 a 20 minutos por cada dos a tres intervalos de pomodoro');
+        }
+      });
+      this.countPomodoros = 0;
+    }
   }
 
   private _timerCalculations() {
