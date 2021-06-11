@@ -14,6 +14,7 @@ export class FocusPageComponent implements OnInit {
   public minutes: string;
   public seconds: string;
   public formTimers: FormGroup;
+  public panelOpenState = true;
 
   constructor(public authService: AuthService,
     private formBuilder: FormBuilder) {
@@ -77,6 +78,9 @@ export class FocusPageComponent implements OnInit {
     if (minute === 0 && second === 0) this._stopTimer();
   }
 
+  togglePanel(status: boolean) {
+    this.panelOpenState = status;
+  }
 
   get minute() {
     return this.formTimers.controls['minutes'];

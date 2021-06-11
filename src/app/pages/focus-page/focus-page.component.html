@@ -1,57 +1,72 @@
 <div class="focus-body">
   <button mat-raised-button class="logout-btn" (click)="authService.logout()">Logout</button>
-  <div class="timer-body">
-    <div class="timer">
-      <p>{{minutes}}:{{seconds}}</p>
-    </div>
-    <div class="w-50 mt-4 d-flex justify-content-center">
-      <button mat-raised-button [color]="started ? 'warn' : 'primary'" class="mx-1" (click)="timerControls()">{{started ? 'Detener' : 'Iniciar'}}</button>
-    </div>
-    <div class="my-3">
-      <form [formGroup]="formTimers" (ngSubmit)="setTime()" class="d-flex flex-column align-items-center">
-        <div class="form-group d-flex justify-content-center">
-          <mat-form-field appearance="outline" class="p-1" style="width: 5rem;">
-            <mat-select formControlName="minutes">
-              <mat-option value="00">00</mat-option>
-              <mat-option value="05">05</mat-option>
-              <mat-option value="10">10</mat-option>
-              <mat-option value="15">15</mat-option>
-              <mat-option value="20">20</mat-option>
-              <mat-option value="25">25</mat-option>
-              <mat-option value="30">30</mat-option>
-              <mat-option value="35">35</mat-option>
-              <mat-option value="40">40</mat-option>
-              <mat-option value="45">45</mat-option>
-              <mat-option value="50">50</mat-option>
-              <mat-option value="55">55</mat-option>
-              <mat-option value="59">59</mat-option>
-            </mat-select>
-          </mat-form-field>
-  
-          <mat-form-field appearance="outline" class="p-1" style="width: 5rem;">
-            <mat-select formControlName="seconds">
-              <mat-option value="00">00</mat-option>
-              <mat-option value="05">05</mat-option>
-              <mat-option value="10">10</mat-option>
-              <mat-option value="15">15</mat-option>
-              <mat-option value="20">20</mat-option>
-              <mat-option value="25">25</mat-option>
-              <mat-option value="30">30</mat-option>
-              <mat-option value="35">35</mat-option>
-              <mat-option value="40">40</mat-option>
-              <mat-option value="45">45</mat-option>
-              <mat-option value="50">50</mat-option>
-              <mat-option value="55">55</mat-option>
-              <mat-option value="59">59</mat-option>        
-            </mat-select>
-          </mat-form-field>
+  <mat-accordion>
+    <mat-expansion-panel  (opened)="togglePanel(true)"
+                          (closed)="togglePanel(false)"
+                          [expanded]="panelOpenState">
+      <mat-expansion-panel-header>
+        <mat-panel-description>
+          <div *ngIf="!panelOpenState" class="timer-relax">
+            {{minutes}}:{{seconds}}
+          </div>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div class="timer-body">
+        <div class="timer">
+          <p>{{minutes}}:{{seconds}}</p>
         </div>
-    
-        <button mat-raised-button type="submit">
-          Guardar
-        </button>
+        <div class="w-50 mt-4 d-flex justify-content-center">
+          <button mat-raised-button [color]="started ? 'warn' : 'primary'" class="mx-1" (click)="timerControls()">{{started ? 'Detener' : 'Iniciar'}}</button>
+        </div>
+        <div class="my-3">
+          <form [formGroup]="formTimers" (ngSubmit)="setTime()" class="d-flex flex-column align-items-center">
+            <div class="form-group d-flex justify-content-center">
+              <mat-form-field appearance="outline" class="p-1" style="width: 5rem;">
+                <mat-select formControlName="minutes">
+                  <mat-option value="00">00</mat-option>
+                  <mat-option value="05">05</mat-option>
+                  <mat-option value="10">10</mat-option>
+                  <mat-option value="15">15</mat-option>
+                  <mat-option value="20">20</mat-option>
+                  <mat-option value="25">25</mat-option>
+                  <mat-option value="30">30</mat-option>
+                  <mat-option value="35">35</mat-option>
+                  <mat-option value="40">40</mat-option>
+                  <mat-option value="45">45</mat-option>
+                  <mat-option value="50">50</mat-option>
+                  <mat-option value="55">55</mat-option>
+                  <mat-option value="59">59</mat-option>
+                </mat-select>
+              </mat-form-field>
+      
+              <mat-form-field appearance="outline" class="p-1" style="width: 5rem;">
+                <mat-select formControlName="seconds">
+                  <mat-option value="00">00</mat-option>
+                  <mat-option value="05">05</mat-option>
+                  <mat-option value="10">10</mat-option>
+                  <mat-option value="15">15</mat-option>
+                  <mat-option value="20">20</mat-option>
+                  <mat-option value="25">25</mat-option>
+                  <mat-option value="30">30</mat-option>
+                  <mat-option value="35">35</mat-option>
+                  <mat-option value="40">40</mat-option>
+                  <mat-option value="45">45</mat-option>
+                  <mat-option value="50">50</mat-option>
+                  <mat-option value="55">55</mat-option>
+                  <mat-option value="59">59</mat-option>        
+                </mat-select>
+              </mat-form-field>
+            </div>
+        
+            <button mat-raised-button type="submit">
+              Guardar
+            </button>
+      
+          </form>
+        </div>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
   
-      </form>
-    </div>
-  </div>
+
 </div>
