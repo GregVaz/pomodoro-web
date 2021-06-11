@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { NotificationsService } from 'angular2-notifications';
 import { AuthService } from 'src/app/services/auth.service';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-focus-page',
@@ -17,7 +19,8 @@ export class FocusPageComponent implements OnInit {
   public panelOpenState = true;
 
   constructor(public authService: AuthService,
-    private formBuilder: FormBuilder) {
+    private formBuilder: FormBuilder,
+    private notificationService: NotificationsService) {
     this.timer = 1500;
     this.started = false;
     this.minutes = '25';
@@ -42,7 +45,7 @@ export class FocusPageComponent implements OnInit {
 
   timerControls() {
     if (Number(this.minute.value) === 0 && Number(this.second.value) === 0) {
-      console.log('El timer no puede ejecutar dicha accion');
+      this.notificationService.error('Error', 'El timer no puede ejecutar dicha acción');
     } else if (!this.started) this._startTimer();
     else this._stopTimer();
   }
@@ -69,7 +72,11 @@ export class FocusPageComponent implements OnInit {
   private _controls = () => {
     this.timer = this.timer - 1;
     let result = this._timerCalculations();
-    if (result === 0) this._stopTimer();
+    if (result === 0) this.finishedTimer();
+  }
+
+  private finishedTimer() {
+    this._stopTimer();
   }
 
   private _timerCalculations() {

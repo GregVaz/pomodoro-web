@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from './material';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SignUpPageComponent } from './pages/sign-up-page/sign-up-page.component';
+import { SimpleNotificationsModule } from 'angular2-notifications';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,14 @@ import { SignUpPageComponent } from './pages/sign-up-page/sign-up-page.component
     BrowserAnimationsModule,
     HttpClientModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SimpleNotificationsModule.forRoot({
+      position: ['top', 'right'],
+      timeOut: 3000,
+      showProgressBar: true,
+      pauseOnHover: true,
+      clickToClose: true
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
