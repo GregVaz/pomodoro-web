@@ -81,6 +81,7 @@ export class FocusPageComponent implements OnInit {
 
   private finishedTimer() {
     this._stopTimer();
+    this.startAudioAlert();
     this.countPomodoros++;
     if (this.countPomodoros > 2) {
       Swal.fire({
@@ -108,6 +109,11 @@ export class FocusPageComponent implements OnInit {
     this.minutes = minute.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
     this.seconds = second.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
     return minute + second;
+  }
+
+  private startAudioAlert() {
+    const audio = new Audio('assets/audio/alerta-sismica.mp3');
+    audio.play();
   }
 
   togglePanel(status: boolean) {
