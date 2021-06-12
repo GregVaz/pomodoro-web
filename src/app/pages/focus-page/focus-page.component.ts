@@ -1,4 +1,3 @@
-import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { NotificationsService } from 'angular2-notifications';
@@ -20,6 +19,8 @@ export class FocusPageComponent implements OnInit {
   public formTimers: FormGroup;
   public panelOpenState = true;
   private countPomodoros = 0 ;
+  private audio = new Audio('assets/audio/alerta.mp3');
+
 
   constructor(public authService: AuthService,
     private formBuilder: FormBuilder,
@@ -82,6 +83,7 @@ export class FocusPageComponent implements OnInit {
   private finishedTimer() {
     this._stopTimer();
     this.startAudioAlert();
+    this._finishedNotification();
     this.countPomodoros++;
     if (this.countPomodoros > 2) {
       Swal.fire({
@@ -103,6 +105,18 @@ export class FocusPageComponent implements OnInit {
     }
   }
 
+  private _finishedNotification() {
+    this.notificationService.info('Alerta', 'Tu tiempo ha llegado a cero', {
+      position: ['top', 'left'],
+      showProgressBar: true,
+      pauseOnHover: true,
+      clickToClose: true
+    });
+    setTimeout(() => {
+      this.stopAudioAlert();
+    }, 5000);
+  }
+
   private _timerCalculations() {
     let minute = Math.floor(this.timer / 60);
     let second = Math.floor(this.timer % 60);
@@ -112,8 +126,11 @@ export class FocusPageComponent implements OnInit {
   }
 
   private startAudioAlert() {
-    const audio = new Audio('assets/audio/alerta-sismica.mp3');
-    audio.play();
+    this.audio.play();
+  }
+
+  private stopAudioAlert() {
+    this.audio.pause();
   }
 
   togglePanel(status: boolean) {
