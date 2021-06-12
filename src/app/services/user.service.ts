@@ -7,6 +7,8 @@ import { Observable, of } from 'rxjs';
 import { User } from '../utils/user.interface';
 import { Login } from '../utils/login.interface';
 
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -28,9 +30,15 @@ export class UserService {
       catchError(this.handleError<any>('Usuario no creado')));
   }
 
-  validateSession(token: string) {
+  validateSession(token: string): Observable<boolean> {
     this.httpOptions = { 'Content-Type': 'application/json' };
-    return this.http.post(this.endpoint + 'session', { token }, this.httpOptions);
+    return token ? this.http.post(this.endpoint + 'validate', { token }, this.httpOptions).pipe(
+      tap(res => console.log(res)),
+      map(
+        res => true,
+        (error: any) => false
+      )
+    ) : of(false);
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

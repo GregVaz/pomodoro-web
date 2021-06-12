@@ -34,6 +34,7 @@ export class FocusPageComponent implements OnInit {
       'minutes': [20],
       'seconds': [0]
     });
+    console.log('constructor focus');
   }
 
   ngOnInit(): void {
