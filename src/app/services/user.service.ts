@@ -7,8 +7,6 @@ import { Observable, of } from 'rxjs';
 import { User } from '../utils/user.interface';
 import { Login } from '../utils/login.interface';
 
-
-
 @Injectable({
   providedIn: 'root'
 })

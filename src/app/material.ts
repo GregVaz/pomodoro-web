@@ -6,7 +6,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSelectModule} from '@angular/material/select'; 
-import {MatExpansionModule} from '@angular/material/expansion'; 
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatMenuModule} from '@angular/material/menu'; 
 
 @NgModule({
   imports: [
@@ -17,7 +19,9 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatFormFieldModule,
     MatToolbarModule,
     MatSelectModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatRadioModule,
+    MatMenuModule
   ],
   exports: [
     MatButtonModule,
@@ -27,7 +31,9 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatFormFieldModule,
     MatToolbarModule,
     MatSelectModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatRadioModule,
+    MatMenuModule
   ]
 })
 export class MaterialModule {}
